@@ -693,7 +693,7 @@ void ShaderEditor::_make_context_menu(bool p_selection, Vector2 p_position) {
 	context_menu->add_shortcut(ED_GET_SHORTCUT("script_text_editor/toggle_comment"), EDIT_TOGGLE_COMMENT);
 	context_menu->add_shortcut(ED_GET_SHORTCUT("script_text_editor/toggle_bookmark"), BOOKMARK_TOGGLE);
 	context_menu->add_separator();
-	context_menu->add_shortcut(ED_GET_SHORTCUT("ui_cancel"), EDIT_CLEAR);
+	context_menu->add_shortcut(ED_SHORTCUT("ui_cancel", TTR("Clear Selection")), EDIT_CLEAR);
 
 	context_menu->set_position(get_screen_position() + p_position);
 	context_menu->reset_size();
@@ -755,7 +755,7 @@ ShaderEditor::ShaderEditor() {
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("script_text_editor/toggle_comment"), EDIT_TOGGLE_COMMENT);
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("script_text_editor/duplicate_selection"), EDIT_DUPLICATE_SELECTION);
 	edit_menu->get_popup()->add_separator();
-	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("ui_cancel"), EDIT_CLEAR);
+	edit_menu->get_popup()->add_shortcut(ED_SHORTCUT("ui_cancel", TTR("Clear Selection")), EDIT_CLEAR);
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("ui_text_completion_query"), EDIT_COMPLETE);
 	edit_menu->get_popup()->connect("id_pressed", callable_mp(this, &ShaderEditor::_menu_option));
 

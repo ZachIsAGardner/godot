@@ -1789,7 +1789,7 @@ void ScriptTextEditor::_make_context_menu(bool p_selection, bool p_color, bool p
 
 	if (p_selection) {
 		context_menu->add_separator();
-		context_menu->add_shortcut(ED_GET_SHORTCUT("ui_cancel"), EDIT_CLEAR);
+		context_menu->add_shortcut(ED_SHORTCUT("ui_cancel", TTR("Clear Selection")), EDIT_CLEAR);
 		context_menu->add_shortcut(ED_GET_SHORTCUT("script_text_editor/convert_to_uppercase"), EDIT_TO_UPPERCASE);
 		context_menu->add_shortcut(ED_GET_SHORTCUT("script_text_editor/convert_to_lowercase"), EDIT_TO_LOWERCASE);
 		context_menu->add_shortcut(ED_GET_SHORTCUT("script_text_editor/evaluate_selection"), EDIT_EVALUATE);
@@ -1925,7 +1925,7 @@ void ScriptTextEditor::_enable_code_editor() {
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("script_text_editor/auto_indent"), EDIT_AUTO_INDENT);
 	edit_menu->get_popup()->connect("id_pressed", callable_mp(this, &ScriptTextEditor::_edit_option));
 	edit_menu->get_popup()->add_separator();
-	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("ui_cancel"), EDIT_CLEAR);
+	edit_menu->get_popup()->add_shortcut(ED_SHORTCUT("ui_cancel", TTR("Clear Selection")), EDIT_CLEAR);
 
 	edit_menu->get_popup()->add_child(convert_case);
 	edit_menu->get_popup()->add_submenu_item(TTR("Convert Case"), "convert_case");
