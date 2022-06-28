@@ -366,6 +366,9 @@ void TextEditor::_edit_option(int p_op) {
 		case EDIT_CAPITALIZE: {
 			_convert_case(CodeTextEditor::CAPITALIZE);
 		} break;
+		case EDIT_CLEAR: {
+			code_editor->get_text_editor()->deselect();
+		} break;
 		case SEARCH_FIND: {
 			code_editor->get_find_replace_bar()->popup_search();
 		} break;
@@ -498,6 +501,7 @@ void TextEditor::_make_context_menu(bool p_selection, bool p_can_fold, bool p_is
 
 	if (p_selection) {
 		context_menu->add_separator();
+		context_menu->add_shortcut(ED_GET_SHORTCUT("ui_cancel"), EDIT_CLEAR);
 		context_menu->add_shortcut(ED_GET_SHORTCUT("script_text_editor/convert_to_uppercase"), EDIT_TO_UPPERCASE);
 		context_menu->add_shortcut(ED_GET_SHORTCUT("script_text_editor/convert_to_lowercase"), EDIT_TO_LOWERCASE);
 	}
@@ -586,6 +590,7 @@ TextEditor::TextEditor() {
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("script_text_editor/convert_indent_to_tabs"), EDIT_CONVERT_INDENT_TO_TABS);
 
 	edit_menu->get_popup()->add_separator();
+	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("ui_cancel"), EDIT_CLEAR);
 	PopupMenu *convert_case = memnew(PopupMenu);
 	convert_case->set_name("convert_case");
 	edit_menu->get_popup()->add_child(convert_case);

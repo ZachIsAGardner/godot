@@ -402,6 +402,9 @@ void ShaderEditor::_menu_option(int p_option) {
 		case EDIT_COMPLETE: {
 			shader_editor->get_text_editor()->request_code_completion();
 		} break;
+		case EDIT_CLEAR: {
+			shader_editor->get_text_editor()->deselect();
+		} break;
 		case SEARCH_FIND: {
 			shader_editor->get_find_replace_bar()->popup_search();
 		} break;
@@ -689,6 +692,8 @@ void ShaderEditor::_make_context_menu(bool p_selection, Vector2 p_position) {
 	context_menu->add_shortcut(ED_GET_SHORTCUT("script_text_editor/indent_right"), EDIT_INDENT_RIGHT);
 	context_menu->add_shortcut(ED_GET_SHORTCUT("script_text_editor/toggle_comment"), EDIT_TOGGLE_COMMENT);
 	context_menu->add_shortcut(ED_GET_SHORTCUT("script_text_editor/toggle_bookmark"), BOOKMARK_TOGGLE);
+	context_menu->add_separator();
+	context_menu->add_shortcut(ED_GET_SHORTCUT("ui_cancel"), EDIT_CLEAR);
 
 	context_menu->set_position(get_screen_position() + p_position);
 	context_menu->reset_size();
@@ -750,6 +755,7 @@ ShaderEditor::ShaderEditor() {
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("script_text_editor/toggle_comment"), EDIT_TOGGLE_COMMENT);
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("script_text_editor/duplicate_selection"), EDIT_DUPLICATE_SELECTION);
 	edit_menu->get_popup()->add_separator();
+	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("ui_cancel"), EDIT_CLEAR);
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("ui_text_completion_query"), EDIT_COMPLETE);
 	edit_menu->get_popup()->connect("id_pressed", callable_mp(this, &ShaderEditor::_menu_option));
 
