@@ -2133,8 +2133,6 @@ void ScriptTextEditor::register_editor() {
 	ED_SHORTCUT("script_text_editor/goto_next_breakpoint", TTR("Go to Next Breakpoint"), KeyModifierMask::CMD | Key::PERIOD);
 	ED_SHORTCUT("script_text_editor/goto_previous_breakpoint", TTR("Go to Previous Breakpoint"), KeyModifierMask::CMD | Key::COMMA);
 
-	ED_SHORTCUT("script_text_editor/clear_selection", TTR("Clear Selection"), Key::ESCAPE);
-
 	ScriptEditor::register_create_script_editor_function(create_editor);
 }
 

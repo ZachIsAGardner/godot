@@ -471,6 +471,12 @@ void LineEdit::gui_input(const Ref<InputEvent> &p_event) {
 				return;
 			}
 
+			if (k->is_action("script_text_editor/clear_selection", true)) {
+				deselect();
+				accept_event();
+				return;
+			}
+
 			if (k->is_action("ui_text_select_all", true)) {
 				select();
 				accept_event();
@@ -1875,6 +1881,9 @@ void LineEdit::menu_option(int p_option) {
 				clear();
 			}
 		} break;
+		case MENU_CLEAR_SELECTION: {
+			deselect();
+		} break;
 		case MENU_SELECT_ALL: {
 			select_all();
 		} break;
@@ -2363,6 +2372,7 @@ void LineEdit::_bind_methods() {
 	BIND_ENUM_CONSTANT(MENU_COPY);
 	BIND_ENUM_CONSTANT(MENU_PASTE);
 	BIND_ENUM_CONSTANT(MENU_CLEAR);
+	BIND_ENUM_CONSTANT(MENU_CLEAR_SELECTION);
 	BIND_ENUM_CONSTANT(MENU_SELECT_ALL);
 	BIND_ENUM_CONSTANT(MENU_UNDO);
 	BIND_ENUM_CONSTANT(MENU_REDO);
@@ -2471,6 +2481,7 @@ void LineEdit::_ensure_menu() {
 	}
 	menu->add_separator();
 	if (is_selecting_enabled()) {
+		menu->add_item(RTR("Clear Selection"), MENU_CLEAR_SELECTION, is_shortcut_keys_enabled() ? _get_menu_action_accelerator("script_text_editor/clear_selection") : Key::NONE);
 		menu->add_item(RTR("Select All"), MENU_SELECT_ALL, is_shortcut_keys_enabled() ? _get_menu_action_accelerator("ui_text_select_all") : Key::NONE);
 	}
 	if (editable) {

@@ -794,6 +794,11 @@ void CodeTextEditor::input(const Ref<InputEvent> &event) {
 		accept_event();
 		return;
 	}
+	if (ED_IS_SHORTCUT("script_text_editor/clear_selection", key_event)) {
+		text_editor->deselect();
+		accept_event();
+		return;
+	}
 }
 
 void CodeTextEditor::_text_editor_gui_input(const Ref<InputEvent> &p_event) {
@@ -1856,6 +1861,7 @@ CodeTextEditor::CodeTextEditor() {
 	ED_SHORTCUT("script_editor/zoom_in", TTR("Zoom In"), KeyModifierMask::CMD | Key::EQUAL);
 	ED_SHORTCUT("script_editor/zoom_out", TTR("Zoom Out"), KeyModifierMask::CMD | Key::MINUS);
 	ED_SHORTCUT("script_editor/reset_zoom", TTR("Reset Zoom"), KeyModifierMask::CMD | Key::KEY_0);
+	ED_SHORTCUT("script_text_editor/clear_selection", TTR("Clear Selection"), Key::ESCAPE);
 
 	text_editor = memnew(CodeEdit);
 	add_child(text_editor);

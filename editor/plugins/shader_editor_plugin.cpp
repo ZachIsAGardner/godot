@@ -755,7 +755,7 @@ ShaderEditor::ShaderEditor() {
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("script_text_editor/toggle_comment"), EDIT_TOGGLE_COMMENT);
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("script_text_editor/duplicate_selection"), EDIT_DUPLICATE_SELECTION);
 	edit_menu->get_popup()->add_separator();
-	edit_menu->get_popup()->add_shortcut(ED_SHORTCUT("script_text_editor/clear_selection", TTR("Clear Selection")), EDIT_CLEAR);
+	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("script_text_editor/clear_selection"), EDIT_CLEAR);
 	edit_menu->get_popup()->add_shortcut(ED_GET_SHORTCUT("ui_text_completion_query"), EDIT_COMPLETE);
 	edit_menu->get_popup()->connect("id_pressed", callable_mp(this, &ShaderEditor::_menu_option));
 

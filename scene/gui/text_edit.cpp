@@ -1991,9 +1991,14 @@ void TextEdit::gui_input(const Ref<InputEvent> &p_gui_input) {
 		}
 
 		if (is_shortcut_keys_enabled()) {
-			// SELECT ALL, SELECT WORD UNDER CARET, CUT, COPY, PASTE.
+			// SELECT ALL, CLEAR SELECTION, SELECT WORD UNDER CARET, CUT, COPY, PASTE.
 			if (k->is_action("ui_text_select_all", true)) {
 				select_all();
+				accept_event();
+				return;
+			}
+			if (k->is_action("script_text_editor/clear_selection", true)) {
+				deselect();
 				accept_event();
 				return;
 			}
@@ -3376,6 +3381,9 @@ void TextEdit::menu_option(int p_option) {
 			if (editable) {
 				clear();
 			}
+		} break;
+		case MENU_CLEAR_SELECTION: {
+			deselect();
 		} break;
 		case MENU_SELECT_ALL: {
 			select_all();
@@ -5135,6 +5143,7 @@ void TextEdit::_bind_methods() {
 	BIND_ENUM_CONSTANT(MENU_COPY);
 	BIND_ENUM_CONSTANT(MENU_PASTE);
 	BIND_ENUM_CONSTANT(MENU_CLEAR);
+	BIND_ENUM_CONSTANT(MENU_CLEAR_SELECTION);
 	BIND_ENUM_CONSTANT(MENU_SELECT_ALL);
 	BIND_ENUM_CONSTANT(MENU_UNDO);
 	BIND_ENUM_CONSTANT(MENU_REDO);
@@ -5784,6 +5793,7 @@ void TextEdit::_generate_context_menu() {
 		menu->add_separator();
 	}
 	if (selecting_enabled) {
+		menu->add_item(RTR("Clear Selection"), MENU_CLEAR_SELECTION, is_shortcut_keys_enabled() ? _get_menu_action_accelerator("script_text_editor/clear_selection") : Key::NONE);
 		menu->add_item(RTR("Select All"), MENU_SELECT_ALL, is_shortcut_keys_enabled() ? _get_menu_action_accelerator("ui_text_select_all") : Key::NONE);
 	}
 	if (editable) {
